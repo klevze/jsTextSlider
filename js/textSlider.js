@@ -1,55 +1,112 @@
-$.fn.howMuchCols = function(){
-  return Math.round($(this).find(':last').position().left - $(this).position().left / $(this).outerWidth());
-};
+(function() {
 
-var currentPage = 0;
-var w = $(".text-slider").width();
-var speed = 400;
+	var currentPage;
+	var w;
+	var speed = 400;
 
-var cols = $(".main-text").css('column-count');
-var gap = $(".main-text").css('column-gap');
-var width = $(".main-text").css('column-width');
-var padding = $(".main-text").css('padding');
-var cw = parseInt(w / cols) + (parseInt(gap) / cols) + 0.99;
+	var cols;
+	var gap;
+	var width;
+	var padding;
+	var cw = 0;
 
-var mainWidth = $('.main-text').howMuchCols();
-var numPages = Math.round(mainWidth / cw) - (cols - 1);
+	var mainWidth;
+	var numPages;
+	var objName;
 
-showPage();
+	this.textSlider = function(obj) {
+		objName = obj;
+		init();
+  	}
 
-document.querySelector(".slide-left").addEventListener("click", (e) => { 
-	currentPage--;
-	if (currentPage < 0) {
-		currentPage = 0;
-		$('.slide-left').addClass('hidden');
-	}
-	$('.main-text').animate({scrollLeft: currentPage * cw}, speed, function() {
+  	this.init = function() {
+
+		this.currentPage = 0;
+		calc();
+		this.numPages = getPages();
 		showPage();
-	});
-});
+		bindEvents();
+  	}
 
-document.querySelector(".slide-right").addEventListener("click", (e) => { 
-	currentPage++;
+  	this.calc = function() {
+		this.w = this.getWidth();
+		this.cols = this.getCols();
+		this.gap = this.getGap();
 
-	if (currentPage >= numPages) {
-		currentPage = numPages - 1;
-		return;
+		this.padding = $(objName).css('padding');
+		this.cw = Math.round(this.w / this.cols + this.gap / this.cols + 0.99);
+		this.mainWidth = this.getFullWidth();
+  	}
+
+  	this.getPages = function() {
+  		//console.log(this.mainWidth, this.cw);
+		return Math.round(this.mainWidth / this.cw) - 1;
+  	}
+
+  	this.getFullWidth = function() {
+		return  Math.round($(objName).find(':last').position().left);
+  	}
+
+  	this.getWidth = function() {
+		return $(objName).width();
+  	}
+
+  	this.getGap = function() {
+		return parseInt($(objName).css('column-gap'));
+  	}
+
+  	this.getCols = function() {
+		return parseInt($(objName).css('column-count'));
+  	}
+
+  	this.showPage = function() {
+		this.displayPage = this.currentPage + 1;
+		$(".page").html( this.displayPage + '/' + this.numPages);
 	}
 
-	$('.slide-left').removeClass('hidden');
-	var x1 = $('.main-text').scrollLeft();
+	this.bindEvents = function () {
+		document.querySelector(".slide-left").addEventListener("click", (e) => { 
+			this.calc();
+			this.currentPage--;
+			if (this.currentPage < 0) {
+				this.currentPage = 0;
+				$('.slide-left').addClass('hidden');
+			}
 
-	$('.main-text').animate({scrollLeft: currentPage * cw}, speed, function() {
-		var x2 = $('.main-text').scrollLeft();
-		var x = x2 - x1;
-		if (x < cw) {
-			numPages--;
-		}
-		showPage();
-	});
-});
+			$(objName).animate({scrollLeft: this.currentPage * this.cw}, this.speed, function() {
+				showPage();
+			});
+		});
 
-function showPage() {
-	var displayPage = currentPage + 1;
-	$(".page").html( displayPage + '/' + numPages);
-}
+		document.querySelector(".slide-right").addEventListener("click", (e) => { 
+			this.calc();
+			this.currentPage++;
+
+			if (this.currentPage >= this.numPages) {
+				this.currentPage = this.numPages - 1;
+				return;
+			}
+
+			$('.slide-left').removeClass('hidden');
+			var x1 = $(objName).scrollLeft();
+
+			$(objName).animate({scrollLeft: this.currentPage * this.cw}, this.speed, function() {
+				var x2 = $(objName).scrollLeft();
+				var x = x2 - x1;
+				if (x < this.cw) {
+					this.numPages--;
+				}
+				showPage();
+			});
+		});
+
+		window.addEventListener('resize', function() {
+			calc();
+			this.numPages = getPages();
+			showPage();
+		});
+
+
+	}
+
+})();

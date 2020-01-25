@@ -36,7 +36,7 @@ body {
 	font-size:18px;
 	line-height:25px;
 	color:#392F2C;
-	max-height:800px;
+	max-height:600px;
 	width:100%;
 	text-align: left;
 	columns: 3;
@@ -44,10 +44,25 @@ body {
 	column-gap: 30px;
 	column-span: none;
 	column-fill: auto;
-	column-rule: 4px dotted #333;
+	column-rule: 4px dotted #aaa;
 	column-fill: balance-all;
 	overflow:hidden;
 }
+
+.main-text > h1 {
+	margin-bottom:1rem;
+}
+
+.main-text > h2 {
+	margin-top:1rem;
+	margin-bottom:1rem;
+}
+
+.main-text > h3 {
+	margin-top:1rem;
+	margin-bottom:1rem;
+}
+
 
 @media only screen and (max-width: 800px) {
 	.main-text {
