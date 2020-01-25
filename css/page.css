@@ -1,0 +1,103 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+	font-family:"Arial";
+	font-size:15px;
+}
+
+.text-slider {
+	grid-gap: 0em;
+	margin:1em;
+	padding:3em;
+	background:#fff;
+}
+
+.img-responsive {
+	width:100%;
+	object-fit: cover;
+}
+
+.slider-arrow {
+	font-size:40px;
+	color:#999;
+	margin:1rem 0 1rem 0;
+	cursor:pointer;
+}
+
+.slider-arrow:hover {
+	color:#333;
+}
+
+.main-text {
+	font-size:18px;
+	line-height:25px;
+	color:#392F2C;
+	max-height:800px;
+	width:100%;
+	text-align: left;
+	columns: 3;
+	text-align: justify;
+	column-gap: 30px;
+	column-span: none;
+	column-fill: auto;
+	column-rule: 4px dotted #333;
+	column-fill: balance-all;
+	overflow:hidden;
+}
+
+@media only screen and (max-width: 800px) {
+	.main-text {
+		columns:2;
+	}
+}
+
+@media only screen and (min-width: 1400px) {
+	.main-text {
+		columns:4;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	.main-text {
+		columns:5;
+	}
+}
+
+@media only screen and (min-width: 2200px) {
+	.main-text {
+		columns:6;
+	}
+}
+
+
+.main-text > p::first-letter {
+  font-size: 25px;
+  margin-top:20px;
+  padding-left:10px;
+}
+
+.hidden {
+	display:none;
+}
+
+.sliderNav {
+	margin-top:1rem;
+	display:grid;
+	grid-template-columns: 1fr 10fr 1fr;
+	background:#eee;
+	grid-gap:1rem;
+	border-radius:1rem;
+	justify-items:stretch;
+}
+
+.sliderNav div {
+	place-self: center;
+}
+
+.page {
+	font-size:20px;
+}
