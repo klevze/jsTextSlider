@@ -73,7 +73,7 @@
 			}
 
 			$(objName).animate({scrollLeft: this.currentPage * this.cw}, this.speed, function() {
-				showPage();
+				this.showPage();
 			});
 		});
 
