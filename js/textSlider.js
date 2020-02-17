@@ -51,11 +51,11 @@
 	}
 
 	this.getGap = function() {
-		return parseInt($(objName).css("column-gap"));
+		return parseInt($(objName).css("column-gap"), 10);
 	}
 
 	this.getCols = function() {
-		return parseInt($(objName).css("column-count"));
+		return parseInt($(objName).css("column-count"), 10);
 	}
 
 	this.showPage = function() {
