@@ -73,7 +73,7 @@
 			}
 
 			$(objName).animate({scrollLeft: this.currentPage * this.cw}, this.speed, function() {
-				this.showPage();
+				showPage();
 			});
 		});
 
@@ -95,7 +95,7 @@
 				if (x < this.cw) {
 					this.numPages--;
 				}
-				this.showPage();
+				showPage();
 			});
 		});
 
