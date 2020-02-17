@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
 	var currentPage;
 	var w;
@@ -95,14 +95,14 @@
 				if (x < this.cw) {
 					this.numPages--;
 				}
-				showPage();
+				this.showPage();
 			});
 		});
 
 		window.addEventListener("resize", function() {
 			this.calc();
 			this.numPages = this.getPages();
-			showPage();
+			this.showPage();
 		});
 	};
-})();
+}());
