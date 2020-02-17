@@ -104,5 +104,5 @@
 			this.numPages = this.getPages();
 			showPage();
 		});
-	}
+	};
 })();
