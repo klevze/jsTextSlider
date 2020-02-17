@@ -23,8 +23,8 @@
 		this.currentPage = 0;
 		this.calc();
 		this.numPages = this.getPages();
-		this.showPage();
-		this.bindEvents();
+		showPage();
+		bindEvents();
 	};
 
 	this.calc = function() {
@@ -102,7 +102,7 @@
 		window.addEventListener("resize", function() {
 			this.calc();
 			this.numPages = this.getPages();
-			this.showPage();
+			showPage();
 		});
 	};
 }());
