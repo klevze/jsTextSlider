@@ -16,7 +16,7 @@
 
 	this.textSlider = function(obj) {
 		objName = obj;
-		init();
+		this.init();
 	}
 
 	this.init = function() {
@@ -32,7 +32,7 @@
 		this.cols = this.getCols();
 		this.gap = this.getGap();
 
-		this.padding = $(objName).css('padding');
+		this.padding = $(objName).css("padding");
 		this.cw = Math.round(this.w / this.cols + this.gap / this.cols + 0.99);
 		this.mainWidth = this.getFullWidth();
 	}
@@ -43,7 +43,7 @@
 	}
 
 	this.getFullWidth = function() {
-		return  Math.round($(objName).find(':last').position().left);
+		return  Math.round($(objName).find(":last").position().left);
 	}
 
 	this.getWidth = function() {
@@ -51,16 +51,16 @@
 	}
 
 	this.getGap = function() {
-		return parseInt($(objName).css('column-gap'));
+		return parseInt($(objName).css("column-gap"));
 	}
 
 	this.getCols = function() {
-		return parseInt($(objName).css('column-count'));
+		return parseInt($(objName).css("column-count"));
 	}
 
 	this.showPage = function() {
 		this.displayPage = this.currentPage + 1;
-		$(".page").html( this.displayPage + '/' + this.numPages);
+		$(".page").html( this.displayPage + "/" + this.numPages);
 	}
 
 	this.bindEvents = function () {
@@ -69,7 +69,7 @@
 			this.currentPage--;
 			if (this.currentPage < 0) {
 				this.currentPage = 0;
-				$('.slide-left').addClass('hidden');
+				$(".slide-left").addClass("hidden");
 			}
 
 			$(objName).animate({scrollLeft: this.currentPage * this.cw}, this.speed, function() {
@@ -86,7 +86,7 @@
 				return;
 			}
 
-			$(".slide-left").removeClass('hidden');
+			$(".slide-left").removeClass("hidden");
 			var x1 = $(objName).scrollLeft();
 
 			$(objName).animate({scrollLeft: this.currentPage * this.cw}, this.speed, function() {
