@@ -1,1 +1,3 @@
 # jsTextSlider
+
+javascript code
